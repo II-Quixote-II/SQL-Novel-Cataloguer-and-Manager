@@ -15,6 +15,7 @@ def _connect() -> sqlite3.Connection:
 
 # Note to me: This part is what is probably giving me issues on the Main  
 
+# Second Note: It was indeed here
 
 def add_book(title: str, author: str, read_status: str = "UNREAD", rating: str | None = None, genre: str | None = None, date_started: str | None = None, date_finished: str | None = None) -> int:
     """Insert a new book and return its new id."""
@@ -22,7 +23,7 @@ def add_book(title: str, author: str, read_status: str = "UNREAD", rating: str |
         cur = conn.execute(
             "INSERT INTO Books (Title, Author, Read_Status, Rating, Genre, Date_Started, Date_Finished) "
             "VALUES (?, ?, ?, ?, ?, ?, ?)",
-            (title, author, read_status, rating, genre, date_started, date_finished, author, genre, read_status),
+            (title, author, read_status, rating, genre, date_started, date_finished),
         )
         return cur.lastrowid
 
